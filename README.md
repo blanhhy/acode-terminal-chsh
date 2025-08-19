@@ -1,6 +1,6 @@
 # acode-terminal-chsh
 
-这是一个适用于 [Acode](!https://github.com/Acode-Foundation/Acode) 内置终端的登录shell切换工具。
+这是一个适用于 [Acode](https://github.com/Acode-Foundation/Acode) 内置终端的登录shell切换工具。
 
 ## 原理
 Acode 终端使用的 Apline Linux 容器相当精简，它没有自己的 login 程序，而是直接用 bash 当作 login，而在容器初始化脚本中，/bin/bash 这个路径是硬编码的。初始化脚本每次进入APP创建第一个终端时都会重新生成，因此无法更改初始化流程。
@@ -37,7 +37,7 @@ Example: chsh zsh
 
 ## 支持的版本
 
-[Acode 1.11.6-beta.2](!https://github.com/Acode-Foundation/Acode/releases/tag/v1.11.6-beta.2)
+[Acode 1.11.6-beta.2](https://github.com/Acode-Foundation/Acode/releases/tag/v1.11.6-beta.2)
 
 ## 警告
 
