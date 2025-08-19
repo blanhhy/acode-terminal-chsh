@@ -13,16 +13,23 @@ chsh 通过备份并删除 /bin/bash，然后将别的 shell 软链接到 /bin/b
 
 在开始之前，确保你已经成功安装 Acode Terminal。
 
-目标：复制 chsh 到 /data/data/com.foxdebug.acode/files/alpine/bin/chsh，并给予可执行权限。
-
-Step.1
-用 Acode 打开 chsh 文件，然后然后另存到 **Terminal Home**，确保名称为 chsh。
-
-Step.2
-打开 Acode Terminal，运行如下命令：
+在 Acode Terminal 中运行如下命令：
 ```bash
-mv ~/chsh /bin/chsh && chmod +x /bin/chsh && rm ~/chsh
+apk add git
+git clone https://github.com/blanhhy/acode-terminal-chsh.git
+mv acode-terminal-chsh/chsh /bin/ && chmod +x /bin/chsh && rm -rf acode-terminal-chsh
 ```
+
+>或手动安装：
+>
+>Step.1
+>用 Acode 新建文件，复制 [chsh](https://github.com/blanhhy/acode-terminal-chsh/blob/main/chsh) 源码粘贴到其中（或下载后用 Acode 打开），然后保存到 **Terminal Home**。
+>
+>Step.2
+>打开 Terminal，运行如下命令：
+>```bash
+>mv ~/chsh /bin/chsh && chmod +x /bin/chsh
+>```
 
 这时运行 `chsh`，你应该会看到：
 ```bash
@@ -36,6 +43,8 @@ Example: chsh zsh
 假设你安装了 zsh，那么，运行 `chsh zsh`，再打开新的终端进程，将会登录到 zsh
 
 ## 支持的版本
+
+[Acode 1.11.6-beta](https://github.com/Acode-Foundation/Acode/releases/tag/v1.11.6-beta)
 
 [Acode 1.11.6-beta.2](https://github.com/Acode-Foundation/Acode/releases/tag/v1.11.6-beta.2)
 

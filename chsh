@@ -1,6 +1,6 @@
 #!/bin/sh
 # Acode专用chsh工具：通过替换/bin/bash链接修改默认shell
-# 已测试版本：1.11.6-beta.2
+# 已测试版本：1.11.6-beta.2，1.11.6-beta.2
 
 # 必须由root用户运行，防止意外
 if [ "$(id -u)" -ne 0 ]; then
