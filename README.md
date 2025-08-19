@@ -13,7 +13,7 @@ chsh 通过备份并删除 /bin/bash，然后将别的 shell 软链接到 /bin/b
 
 在开始之前，确保你已经成功安装 Acode Terminal。
 
-**目标：复制 chsh 到 /data/data/com.foxdebug.acode/files/alpine/bin/chsh，并给予可执行权限。**
+目标：复制 chsh 到 /data/data/com.foxdebug.acode/files/alpine/bin/chsh，并给予可执行权限。
 
 Step.1
 用 Acode 打开 chsh 文件，然后然后另存到 **Terminal Home**。
