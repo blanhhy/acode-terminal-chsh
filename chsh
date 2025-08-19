@@ -19,7 +19,7 @@ if [ $# -eq 0 ]; then
 fi
 
 # 备份 bash
-[ ! -L /bin/bash ] && cp -lf /bin/bash /bin/real_bash
+[ ! -L /bin/bash ] && cp -lf /bin/bash /bin/real_bash 2>/dev/null
 
 if [ ! -f /bin/real_bash ]; then
     echo "chsh: Error: Failed to backup /bin/bash" >&2
@@ -28,21 +28,22 @@ fi
 
 NAME="$1"
 
-if [ $NAME == "-p" ] || [ $NAME == "--path" ]; then
+if [ "$NAME" == "-p" ] || [ "$NAME" == "--path" ]; then
     if [ $# -eq 1 ]; then
         echo "chsh: Error: no path input" >&2
         exit 1
     fi
     SHELL_PATH="$2"
-elif [ $NAME == "bash" ]; then
+elif [ "$NAME" == "bash" ]; then
     cp -lf /bin/real_bash /bin/bash # 恢复原来的bash
+    echo "changed back to bash"
     exit 0
 else
     SHELL_PATH=$(which $NAME)
 fi
 
 # 防止意外行为
-if [ SHELL_PATH == "/bin/bash" ]; then
+if [ "$SHELL_PATH" == "/bin/bash" ]; then
     echo "chsh: Error: cannot use this path" >&2
     exit 1
 fi
@@ -54,12 +55,15 @@ if ! grep -qFx "$SHELL_PATH" /etc/shells ; then
     exit 1
 fi
 
-mv /bin/bash ~/.cache/.chsh_last_shell
+mkdir -p ~/.cache/chsh
+mv /bin/bash ~/.cache/chsh/last_shell
 
 if ! ln -sf "$SHELL_PATH" /bin/bash ; then
     echo "chsh: Error: Failed to create symlink, restoring..." >&2
-    mv ~/.cache/.chsh_last_shell /bin/bash
+    mv ~/.cache/chsh/last_shell /bin/bash
     exit 1
 fi
 
-rm ~/.cache/.chsh_last_shell
+rm ~/.cache/chsh/last_shell
+
+echo "changed to $SHELL_PATH"
