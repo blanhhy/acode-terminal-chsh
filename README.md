@@ -3,7 +3,7 @@
 这是一个适用于 [Acode](https://github.com/Acode-Foundation/Acode) 内置终端的登录shell切换工具。
 
 ## 原理
-Acode 终端使用的 Apline Linux 容器相当精简，它没有自己的 login 程序，而是直接用 bash 当作 login，而在容器初始化脚本中，/bin/bash 这个路径是硬编码的。初始化脚本每次进入APP创建第一个终端时都会重新生成，因此无法更改初始化流程。
+Acode 终端使用的 Alpine Linux 容器相当精简，它没有自己的 login 程序，而是直接用 bash 当作 login，而在容器初始化脚本中，/bin/bash 这个路径是硬编码的。初始化脚本每次进入APP创建第一个终端时都会重新生成，因此我们无法更改初始化流程。
 
 chsh 通过备份并删除 /bin/bash，然后将别的 shell 软链接到 /bin/bash 来改变登录 shell，注意选用的 shell 必须要在 /etc/shells 中有定义。
 
