@@ -48,6 +48,8 @@ Example: chsh zsh
 
 [Acode 1.11.6-beta.2](https://github.com/Acode-Foundation/Acode/releases/tag/v1.11.6-beta.2)
 
+[Acode 1.11.6-beta.3](https://github.com/Acode-Foundation/Acode/releases/tag/v1.11.6-beta.3)
+
 ## 警告
 
 - 仅供支持的 Acode 版本使用，不要在其它的终端（如 Termux）中使用这个脚本。
