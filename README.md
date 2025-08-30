@@ -44,11 +44,7 @@ Example: chsh zsh
 
 ## 支持的版本
 
-[Acode 1.11.6-beta](https://github.com/Acode-Foundation/Acode/releases/tag/v1.11.6-beta)
-
-[Acode 1.11.6-beta.2](https://github.com/Acode-Foundation/Acode/releases/tag/v1.11.6-beta.2)
-
-[Acode 1.11.6-beta.3](https://github.com/Acode-Foundation/Acode/releases/tag/v1.11.6-beta.3)
+[Acode 1.11.6](https://github.com/Acode-Foundation/Acode/releases/tag/v1.11.6) 正式版及其所有 beta 测试版
 
 ## 警告
 
@@ -56,4 +52,4 @@ Example: chsh zsh
 
 - 除非你非常了解 Acode 版本变化，并且明白它们意味着什么，否则永远不要假定这个脚本能在未经测试的版本上正常运行。
 
-如果不遵循以上两点，运行 chsh 很可能会损坏你的环境。
+如果不遵循以上两点，运行 chsh 很可能会损坏你的环境。此外，在贸然更换版本前最好备份终端数据。
