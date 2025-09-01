@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# 展示 motd
+if [ ! -f ~/.hushlogin ] && [ -z "$ACODE_HUSHLOGIN" ]; then
+	if [ -x /etc/motd.sh ]; then
+		/etc/motd.sh
+	elif [ -f /etc/motd ]; then
+		/bin/cat /etc/motd
+	fi
+else
+	unset ACODE_HUSHLOGIN
+fi
+
+
+# 选择合适的 shell 作为登录 shell
+if [ -G "~/.local/login/shell" ]; then
+	export SHELL=$(realpath ~/.loacl/login/shell)
+else
+	for file in /bin/real_bash /bin/sh /system/bin/sh; do
+		if [ -x $file ]; then
+			export SHELL=$file
+			break
+		fi
+	done
+fi
+
+
+# 区分登录与非登录情形
+if [ -n "$TERM" ]; then
+	exec "$SHELL" -l "$@"
+else
+	exec "$SHELL" "$@"
+fi
