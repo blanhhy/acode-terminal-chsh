@@ -1,3 +1,9 @@
+>Languages: 
+>
+> ☑ 简体中文 
+>
+> ☐ [English](https://github.com/blanhhy/acode-terminal-chsh/blob/main/README_en.md)
+
 # acode-terminal-chsh
 
 这是一个适用于 [Acode](https://github.com/Acode-Foundation/Acode) 内置终端的登录shell切换工具。
