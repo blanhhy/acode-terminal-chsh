@@ -23,10 +23,9 @@ if [ -L "$HOME/.local/login/shell" ]; then
 	export SHELL=$(realpath "$HOME/.local/login/shell")
 else
 	for file in /bin/real_bash /bin/sh /system/bin/sh; do
-		if [ -x $file ]; then
-			export SHELL=$file
-			break
-		fi
+		[ -x $file ] || chmod u+x $file
+		export SHELL=$file
+		break
 	done
 fi
 

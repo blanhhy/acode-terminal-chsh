@@ -4,7 +4,7 @@
 # 必须由root用户运行，防止意外
 if [ "$(id -u)" -ne 0 ]; then
     echo "chsh: Error: Must run as root" >&2
-    exit 1
+    exit 126
 fi
 
 
@@ -12,33 +12,47 @@ fi
 show_usage() {
     echo "Usage: chsh <shell_name>"
 	echo "Change the login shell."
-    exit 1
+    exit 2
 }
 
 
 # 设置 shell
 set_shell () {
-	local NEW_SHELL="/bin/$1"
-	# 验证shell是否在/etc/shells中
-	if [ "$1" != "real_bash" ] || ! grep -qFx $NEW_SHELL /etc/shells; then
+	local NEW_SHELL=$(grep "/bin/$1" /etc/shells)
+	
+	if [ -z "$NEW_SHELL" ]; then
 		echo "chsh: Error: '$NEW_SHELL' is not a valid login shell" >&2
 		echo "chsh: see all valid shells in /etc/shells" >&2
 		exit 1
 	fi
-	# 验证 shell 是否是可执行文件
-	if [ ! -x $NEW_SHELL -o -d $NEW_SHELL ]; then
-		echo "chsh: Error: '$NEW_SHELL' is not an executable file" >&2
+	
+	if [ -d $NEW_SHELL ]; then
+		echo "chsh: Error: '$NEW_SHELL' is a directory" >&2
 		exit 1
 	fi
+	
+	[ -x $NEW_SHELL ] || chmod u+x $NEW_SHELL
+	
 	mkdir -p ~/.local/login
 	ln -sf $NEW_SHELL ~/.local/login/shell
 	echo "changed to $1 ($NEW_SHELL)"
 }
 
 
+# 重置为默认
+reset() {
+	local DEFAULT="/bin/real_bash"
+	if [ ! -f $DEFAULT -o ! -f "$(realpath $DEFAULT)" ]; then
+		echo "chsh: Fatal: '$DEFAULT' is broken" >&2
+		exit 128
+	fi
+	rm -f ~/.local/login/shell
+	echo "changed to bash ($DEFAULT)"
+}
+
 
 case "$1" in
 	"") show_usage;;
-	bash) set_shell real_bash;;
+	bash) reset;;
 	*) set_shell $1;;
 esac

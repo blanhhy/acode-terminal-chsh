@@ -11,11 +11,32 @@ mv -f ./script/chsh.sh /bin/chsh && chmod 755 /bin/chsh
 
 # 备份 bash
 if [ ! -f /bin/real_bash ]; then
-	[ ! -f /bin/bash ] && echo "bad environment"; exit 1
+	if [ ! -f /bin/bash ]; then
+		echo "bad environment" >&2
+		exit 1
+	fi
 	mv -f /bin/bash /bin/real_bash
 	chmod 755 /bin/real_bash
 fi
 
 cp -lf /bin/real_login /bin/bash
+
+
+# 裁剪配置文件
+echo 'if [ -z "$PATH" ]; then
+    export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+fi
+
+export PAGER=less
+umask 022
+
+for script in /etc/profile.d/*.sh ; do
+	if [ -r "$script" ] ; then
+		. "$script"
+	fi
+done
+unset script' > /etc/profile
+echo '[ -f ~/.bashrc ] && source ~/.bashrc' >> ~/.bash_profile
+
 
 echo "Seccessfully installed."
