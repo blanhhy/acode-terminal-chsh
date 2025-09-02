@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # 展示 motd
 if [ ! -f ~/.hushlogin ] && [ -z "$ACODE_HUSHLOGIN" ]; then
@@ -13,8 +13,8 @@ fi
 
 
 # 选择合适的 shell 作为登录 shell
-if [ -G "~/.local/login/shell" ]; then
-	export SHELL=$(realpath ~/.loacl/login/shell)
+if [ -L "$HOME/.local/login/shell" ]; then
+	export SHELL=$(realpath "$HOME/.local/login/shell")
 else
 	for file in /bin/real_bash /bin/sh /system/bin/sh; do
 		if [ -x $file ]; then

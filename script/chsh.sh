@@ -20,13 +20,13 @@ show_usage() {
 set_shell () {
 	local NEW_SHELL="/bin/$1"
 	# 验证shell是否在/etc/shells中
-	if ! grep -qFx $NEW_SHELL /etc/shells ; then
+	if [ "$1" != "real_bash" ] || ! grep -qFx $NEW_SHELL /etc/shells; then
 		echo "chsh: Error: '$NEW_SHELL' is not a valid login shell" >&2
 		echo "chsh: see all valid shells in /etc/shells" >&2
 		exit 1
 	fi
 	# 验证 shell 是否是可执行文件
-	if [ ! -x $NEW_SHELL || -d $NEW_SHELL ]; then
+	if [ ! -x $NEW_SHELL -o -d $NEW_SHELL ]; then
 		echo "chsh: Error: '$NEW_SHELL' is not an executable file" >&2
 		exit 1
 	fi
