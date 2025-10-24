@@ -8,12 +8,7 @@
 
 This is a tool to change the default login shell for [Acode](https://github.com/Acode-Foundation/Acode) built-in terminal.
 
-## How's it work?
-The Alpine Linux container used by the Acode terminal is quite streamlined. It doesn't have its own login program, but symlinks /bin/bash to /bin/login instead. The path `/bin/bash` is hardcoded in the init-alpine.sh script. However, this script is regenerated each time the app creates the first terminal session, so to change the initialization process is improssible.
-
-My chsh script changes the login shell by backing up and deleting /bin/bash, and then symlinking another shell to it. Note that the selected shell must be declared in /etc/shells.
-
-I haven't learned much about shell, so it may be not good, but it works.
+> Note: Due to the limitations of acode and my shell skills, the old version may be poorly written.
 
 ## Installation & Usage
 
@@ -23,34 +18,24 @@ Run these commands in terminal:
 ```bash
 apk add git
 git clone https://github.com/blanhhy/acode-terminal-chsh.git
-mv acode-terminal-chsh/chsh /bin/ && chmod +x /bin/chsh && rm -rf acode-terminal-chsh
+bash ./acode-terminal-chsh/install.sh
 ```
 
->or manually:
->
->Step.1
->Creat a new file in Acode editor, copy the source code of [chsh](https://github.com/blanhhy/acode-terminal-chsh/blob/main/chsh) to it (or download the source file and open it in the editor), and then save it to **Terminal Home** directory.
->
->Step.2
->Start the terminal, run this command:
->```bash
->mv ~/chsh /bin/chsh && chmod +x /bin/chsh
->```
 
-Now run `chsh`, you will see:
+Then run `chsh`, you will see:
 ```bash
-Usage:
-  chsh <shell_name>
-  chsh [-p | --path] <shell_path>
-
-Example: chsh zsh
+Usage: chsh <shell_name>
+Change the login shell.
 ```
 
-Supposing you have zsh installed, run `chsh zsh` and then start a new terminal session to use zsh.
+Supposing you have fish installed, run `chsh fish` and then start a new terminal session to use fish.
 
 ## Supported versions
 
 [Acode 1.11.6](https://github.com/Acode-Foundation/Acode/releases/tag/v1.11.6) stable version and all beta versions
+
+[Acode 1.11.7 beta2](https://github.com/Acode-Foundation/Acode/releases/tag/v1.11.7-beta.2)
+> On 1.11.7 beta1 it'll work but I don't recommend, because the initrc file on this version has obvious bug.
 
 ## Warning
 
