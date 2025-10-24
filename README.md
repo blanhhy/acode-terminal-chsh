@@ -8,12 +8,7 @@
 
 这是一个适用于 [Acode](https://github.com/Acode-Foundation/Acode) 内置终端的登录shell切换工具。
 
-## 原理
-Acode 终端使用的 Alpine Linux 容器相当精简，它没有自己的 login 程序，而是直接用 bash 当作 login，而在容器初始化脚本中，/bin/bash 这个路径是硬编码的。初始化脚本每次进入APP创建第一个终端时都会重新生成，因此无法更改初始化流程。
-
-chsh 通过备份并删除 /bin/bash，然后将别的 shell 软链接到 /bin/bash 来改变登录 shell，注意选用的 shell 必须要在 /etc/shells 中有定义。
-
-我没怎么学过 shell，所以可能写的很烂，但是能用。
+> 注：受制于 acode 的限制和我的 shell 水平，旧版本可能写的很烂
 
 ## 安装及使用
 
@@ -23,34 +18,23 @@ chsh 通过备份并删除 /bin/bash，然后将别的 shell 软链接到 /bin/b
 ```bash
 apk add git
 git clone https://github.com/blanhhy/acode-terminal-chsh.git
-mv acode-terminal-chsh/chsh /bin/ && chmod +x /bin/chsh && rm -rf acode-terminal-chsh
+bash ./acode-terminal-chsh/install.sh
 ```
 
->或手动安装：
->
->Step.1
->用 Acode 新建文件，复制 [chsh](https://github.com/blanhhy/acode-terminal-chsh/blob/main/chsh) 源码粘贴到其中（或下载后用 Acode 打开），然后保存到 **Terminal Home**。
->
->Step.2
->打开 Terminal，运行如下命令：
->```bash
->mv ~/chsh /bin/chsh && chmod +x /bin/chsh
->```
-
-这时运行 `chsh`，你应该会看到：
+然后运行 `chsh`，你应该会看到：
 ```bash
-Usage:
-  chsh <shell_name>
-  chsh [-p | --path] <shell_path>
-
-Example: chsh zsh
+Usage: chsh <shell_name>
+Change the login shell.
 ```
 
-假设你安装了 zsh，那么，运行 `chsh zsh`，再打开新的终端进程，将会登录到 zsh
+假设你安装了 fish，那么，运行 `chsh fish`，再打开新的终端进程，将会登录到 fish
 
 ## 支持的版本
 
 [Acode 1.11.6](https://github.com/Acode-Foundation/Acode/releases/tag/v1.11.6) 正式版及其所有 beta 测试版
+
+[Acode 1.11.7 beta2](https://github.com/Acode-Foundation/Acode/releases/tag/v1.11.7-beta.2)
+> 能运行但不建议使用 1.11.7 beta1，因为这个版本的 initrc 有明显 bug
 
 ## 警告
 
