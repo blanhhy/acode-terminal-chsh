@@ -18,7 +18,7 @@
 ```bash
 apk add git
 git clone https://github.com/blanhhy/acode-terminal-chsh.git
-bash ./acode-terminal-chsh/install.sh
+cd acode-terminal-chsh && bash install.sh
 ```
 
 然后运行 `chsh`，你应该会看到：

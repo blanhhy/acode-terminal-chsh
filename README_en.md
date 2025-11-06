@@ -18,7 +18,7 @@ Run these commands in terminal:
 ```bash
 apk add git
 git clone https://github.com/blanhhy/acode-terminal-chsh.git
-bash ./acode-terminal-chsh/install.sh
+cd acode-terminal-chsh && bash install.sh
 ```
 
 
