@@ -33,7 +33,7 @@ Change the login shell.
 
 [Acode 1.11.6](https://github.com/Acode-Foundation/Acode/releases/tag/v1.11.6) 正式版及其所有 beta 测试版
 
-[Acode 1.11.7 beta2](https://github.com/Acode-Foundation/Acode/releases/tag/v1.11.7-beta.2)
+[Acode 1.11.7](https://github.com/Acode-Foundation/Acode/releases/tag/v1.11.7) 正式版及其所有 beta 测试版
 > 能运行但不建议使用 1.11.7 beta1，因为这个版本的 initrc 有明显 bug
 
 ## 警告
