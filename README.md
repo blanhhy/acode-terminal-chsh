@@ -36,6 +36,9 @@ Change the login shell.
 [Acode 1.11.7](https://github.com/Acode-Foundation/Acode/releases/tag/v1.11.7) 正式版及其所有 beta 测试版
 > 能运行但不建议使用 1.11.7 beta1，因为这个版本的 initrc 有明显 bug
 
+❓ [Acode 1.11.8](https://github.com/Acode-Foundation/Acode/releases/tag/v1.11.8) 正式版及其所有 beta 测试版
+> 从 1.11.7 安装再升级到 1.11.8 是完全没问题的，但是直接从新版安装未经测试
+
 ## 警告
 
 - 仅供支持的 Acode 版本使用，不要在其它的终端（如 Termux）中使用这个脚本。

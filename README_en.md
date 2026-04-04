@@ -37,6 +37,9 @@ Supposing you have fish installed, run `chsh fish` and then start a new terminal
 [Acode 1.11.7](https://github.com/Acode-Foundation/Acode/releases/tag/v1.11.7) stable version and all beta versions
 > On 1.11.7 beta1 it'll work but I don't recommend, because the initrc file on this version has obvious bug.
 
+❓[Acode 1.11.8](https://github.com/Acode-Foundation/Acode/releases/tag/v1.11.8) stable version and all beta versions
+> Installed in v1.11.7 then upgrading to v1.11.8 is ok, but installing directly in v1.11.8 has not been tested.
+
 ## Warning
 
 - Only for supported Acode versions. Do not use this script in other terminals (eg. Termux).
